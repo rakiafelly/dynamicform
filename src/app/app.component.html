@@ -1,17 +1,20 @@
 <button (click)="addSkill()" class="btn btn-info  text-white">Ajouter Skill</button>
 <button (click)="addExperience()" class="btn btn-success">Ajouter Experience</button>
 <form [formGroup]="personalInformations"  (ngSubmit)="onSubmit()" >
-    <div formArrayName="skills" *ngFor=" let skill of skills.controls; let i=index">
-        <div class="FormGroup">
+    <!-- <div formArrayName="skills" *ngFor=" let skill of skills.controls; let i=index"> -->
+      <div  formArrayName="skills"  *ngFor="let skill of skills.controls; index as i">
+  <input [formControlName]="i"/>
+</div>
+        <!-- <div class="FormGroup">
             <label>Skill {{i+1}}: </label>
             <input type="text" formControlName=" {{i}} " class="form-control" >
             <button class="btn btn-danger" (click)="deleteSkill(i)" >Supprimer</button>
-        </div>
-    </div>
-    <div *ngFor="let experience of experienceProfessionel.controls; let i=index" >
+        </div> -->
+    <!-- </div> -->
+    <div formArrayName="experienceProfessionel" *ngFor="let experience of experienceProfessionel.controls; let i=index" >
         <div class="FormGroup">
             <label> Experience Professionel {{i+1}} </label>
-            <input type="text" formControlName="experienceProfessionel.controls[i]" class="form-control">
+            <input type="text" [formControlName]="i" class="form-control">
             <button class="btn btn-danger" (click)="deleteExperience(i)" >Supprimer</button>
         </div>
     </div>
